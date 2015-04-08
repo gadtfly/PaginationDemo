@@ -1,0 +1,11 @@
+<nav>
+  <% (1..collection.pagination.total_pages).each do |page| %>
+    <% if page == collection.pagination.page %>
+      <strong>
+        <%= page %>
+      </strong>
+    <% else %>
+      <%= link_to page, params.merge(page: page) %>
+    <% end %>
+  <% end %>
+</nav>
