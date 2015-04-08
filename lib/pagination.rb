@@ -12,6 +12,9 @@ module Pagination
     end
 
     def paginate(scope)
+      class << scope
+        attr_accessor :pagination
+      end
       scope.pagination = self
       scope.offset(self.offset).limit(self.per_page)
     end
@@ -20,8 +23,4 @@ module Pagination
   def paginate(options = {})
     Pagination.new(options).paginate(self.all)
   end
-end
-
-class ActiveRecord::Relation
-  attr_accessor :pagination
 end
